@@ -1,0 +1,1043 @@
+[
+  {
+    "dir": "actors-and-components",
+    "raw_body": "# Actors & components\n\nAn **Actor** (`AActor`) is anything you can place or spawn in a level. **Components** are the\nreusable pieces of behavior/representation you compose onto actors. \"Composition over\ninheritance\" is the intended design: prefer adding components over deep actor class hierarchies.\n\n## When to use this skill\n\n- Creating a new `AActor` or `UActorComponent` subclass.\n- Setting up a component hierarchy (root + attached scene components) and choosing the root.\n- Spawning actors (imm",
+    "name": "actors-and-components",
+    "description": "Build and compose gameplay objects from Actors and Components in Unreal C++ \u2014 the",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "actor-lifecycle.md",
+      "attachment-and-transforms.md",
+      "components-and-registration.md",
+      "spawning-and-destroying.md"
+    ]
+  },
+  {
+    "dir": "ai-and-navigation",
+    "raw_body": "# AI & navigation\n\nUnreal AI = an **AIController** possessing a pawn, deciding what to do (usually via a\n**Behavior Tree** reading a **Blackboard**), moving via the **navigation system** (NavMesh\npathfinding), optionally sensing the world with **AI Perception**, and querying it with\n**EQS**. **StateTree** offers a modern alternative or complement to Behavior Trees.\n\n## When to use this skill\n\n- Enemy/NPC behavior: patrol, chase, attack, flee, investigate.\n- Moving an AI to a location or actor wi",
+    "name": "ai-and-navigation",
+    "description": "Build AI in Unreal \u2014 AIController-driven pawns, Behavior Trees and Blackboards",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "AI, Perception & Navigation",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "behavior-tree-deep-dive.md",
+      "eqs-deep-dive.md",
+      "navigation-deep-dive.md",
+      "perception-and-statetree.md"
+    ]
+  },
+  {
+    "dir": "animation-system",
+    "raw_body": "# Animation system\n\nA `USkeletalMeshComponent` is animated by a `UAnimInstance` \u2014 the runtime behind an\n**Animation Blueprint**. The recommended architecture is a **C++ `UAnimInstance` base** that\ncomputes animation variables each frame, with the AnimBP's **AnimGraph** consuming those\nvariables to produce the final pose.\n\n## When to use this skill\n\n- Setting up a character's locomotion (idle, walk, run, jump) with state machines and blend\n  spaces driven from C++.\n- Playing one-off animations (a",
+    "name": "animation-system",
+    "description": "Animate skeletal meshes in Unreal using the AnimInstance / Animation Blueprint",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Animation, Control Rig & Cinematics",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "anim-instance-and-update.md",
+      "montages-and-slots.md",
+      "motion-matching-and-warping.md",
+      "state-machines-and-blending.md"
+    ]
+  },
+  {
+    "dir": "asset-management",
+    "raw_body": "# Asset management\n\nEvery `.uasset` is a `UObject` in a package addressed by a virtual path. The single most\nimportant decision is **hard vs soft reference**: it determines what loads into memory (and gets\ncooked) with your class. Wrong choices here cause load hitches and bloated memory/package sizes.\n\n## When to use this skill\n\n- Choosing how a class references a mesh, material, sound, Blueprint, or data asset.\n- Load hitches, or memory/cook size ballooning due to too many hard references.\n- Lo",
+    "name": "asset-management",
+    "description": "Reference and load Unreal assets correctly \u2014 hard vs soft references (TObjectPtr vs",
+    "ConstructorHelpers": ":FObjectFinder, UAssetManager/primary data assets, and asset bundles. Use",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "World Partition & Open World",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "asset-manager-and-bundles.md",
+      "asset-registry.md",
+      "streamable-manager.md"
+    ]
+  },
+  {
+    "dir": "audio-and-metasounds",
+    "raw_body": "# Audio & MetaSounds\n\nThe Unreal audio pipeline: a **sound asset** (`USoundBase` subclass) is activated either\nas a fire-and-forget one-shot or via a **`UAudioComponent`** for ongoing control. 3D\nsounds are positioned and faded using a **`USoundAttenuation`** asset. Mixing is handled\nthrough **sound classes**, **submixes**, and **concurrency** objects. MetaSounds are the\nmodern, node-based, parameter-driven replacement for SoundCues.\n\n## When to use this skill\n\n- Playing SFX (gunshots, footsteps",
+    "name": "audio-and-metasounds",
+    "description": "Play and control audio in Unreal \u2014 the sound asset types (SoundWave, SoundCue,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "VFX (Niagara) & Audio (MetaSounds)",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "attenuation-and-spatialization.md",
+      "audiocomponent-and-playback.md",
+      "metasound-parameters-and-builder.md",
+      "mixing-classes-submixes-concurrency.md"
+    ]
+  },
+  {
+    "dir": "automation-and-testing",
+    "raw_body": "# Automation & testing\n\nUnreal has a layered test ecosystem. Each layer trades world setup cost against richness:\n\n| Layer | Runs | Best for |\n|---|---|---|\n| **Low-level tests (LLT)** | thin process, no editor/game | pure C++ module logic, fastest CI |\n| **Simple automation test** | editor or commandlet | unit/feature tests, no world required |\n| **Complex automation test** | editor or commandlet | same code over many inputs (content stress) |\n| **Spec** (`DEFINE_SPEC`) | editor or commandlet |",
+    "name": "automation-and-testing",
+    "description": "Write and run automated tests for Unreal Engine projects \u2014 simple/complex",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Profiling, Debugging & Automation",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "flags-and-ci.md",
+      "functional-tests.md",
+      "low-level-tests.md",
+      "spec-and-latent-commands.md"
+    ]
+  },
+  {
+    "dir": "blueprint-cpp-integration",
+    "raw_body": "# Blueprint \u2194 C++ integration\n\nThe boundary between C++ and Blueprint is defined entirely by **reflection specifiers** declared in\nUHT macros. Getting them right produces a clean, designer-friendly API; getting them wrong means\nnodes don't appear, properties don't show, or events never fire. This is the contract layer of the\n\"C++ base + Blueprint subclass\" pattern.\n\n## When to use this skill\n\n- Choosing `UFUNCTION`/`UPROPERTY`/`UCLASS` specifiers to expose C++ to designers.\n- Letting Blueprints ",
+    "name": "blueprint-cpp-integration",
+    "description": "Expose C++ classes, functions, and properties to Blueprint in Unreal Engine \u2014 UFUNCTION",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Blueprint & C++ Interop",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "blueprint-interfaces.md",
+      "ufunction-specifiers.md",
+      "uproperty-specifiers.md"
+    ]
+  },
+  {
+    "dir": "blueprint-fundamentals",
+    "raw_body": "# Blueprint fundamentals\n\nA **Blueprint** is a `UObject`-derived class authored as an asset. When compiled it produces a\n`UBlueprintGeneratedClass` \u2014 a fully first-class `UClass` that the engine treats identically to\nany C++ class at runtime. Understanding this two-object architecture (editor asset vs. runtime\nclass) is the foundation for all Blueprint + C++ work.\n\n## When to use this skill\n\n- Deciding what logic belongs in C++ vs. a Blueprint.\n- Designing a C++ base class with a Blueprint subcl",
+    "name": "blueprint-fundamentals",
+    "description": "Understand Blueprints as Unreal's visual scripting and asset-class system \u2014 what a",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Blueprint & C++ Interop",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "blueprint-class-and-generated-class.md",
+      "cpp-blueprint-boundary.md",
+      "graphs-variables-and-components.md"
+    ]
+  },
+  {
+    "dir": "character-and-movement",
+    "raw_body": "# Characters & movement\n\n`ACharacter` is an `APawn` specialized for capsule-based, vertically-oriented\nmovement. It owns a `UCharacterMovementComponent` (CMC) that handles walking,\nfalling, swimming, flying, and custom movement modes with **client-side\nprediction and server reconciliation included**. Use it for humanoid players and\nNPCs; use a plain `APawn` or `UFloatingPawnMovement` for vehicles/drones.\n\n## When to use this skill\n\n- Creating a walking/running/jumping/swimming/flying character (",
+    "name": "character-and-movement",
+    "description": "Implement player/AI characters in Unreal C++ with ACharacter and",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "movement-modes-and-custom.md",
+      "networked-movement.md",
+      "root-motion-and-launch.md"
+    ]
+  },
+  {
+    "dir": "coding-standards",
+    "raw_body": "# Unreal coding standards\n\nMatch Epic's C++ conventions so code reads like the engine and the rest of the project. The\noverriding rule: **match the surrounding code first**; these are the defaults when nothing\nelse is established.\n\nRelated skills: `cpp-fundamentals`, `core-types-and-containers`, `module-and-build-system`.\n\n## When to use this skill\n\n- Writing any new UE C++ header or source file.\n- Reviewing or cleaning up code for style consistency.\n- Choosing names for types, members, function",
+    "name": "coding-standards",
+    "description": "Write Unreal C++ that conforms to Epic's coding standard \u2014 type prefixes",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Build, Modular Plugins & Standards",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "formatting-and-includes.md",
+      "naming-conventions.md",
+      "reflection-and-uht.md"
+    ]
+  },
+  {
+    "dir": "control-rig-and-ik",
+    "raw_body": "# Control Rig & IK\n\nWhen baked clips are insufficient \u2014 feet must land on uneven terrain, hands must grip a\nmoving weapon, or animation must transfer between different skeletons \u2014 reach for Unreal's\nprocedural animation suite: **Control Rig**, the **IK Rig**, and the **IK Retargeter**.\nBoth systems are plugins that extend the core animation system (`animation-system`).\n\n## When to use this skill\n\n- Foot/leg placement on uneven terrain, stairs, or slopes (foot IK, pelvis adjustment).\n- Hand/weapo",
+    "name": "control-rig-and-ik",
+    "description": "Procedural animation and inverse kinematics in Unreal Engine \u2014 Control Rig",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Animation, Control Rig & Cinematics",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "animgraph-ik-nodes.md",
+      "control-rig-graph.md",
+      "ik-retargeter.md"
+    ]
+  },
+  {
+    "dir": "core-types-and-containers",
+    "raw_body": "# Core types & containers\n\nUnreal ships its own containers, string types, and math types. Use them, not `std::`:\nthey integrate with UObject reflection, serialization, allocators, and garbage collection.\nMixing in `std::string` or `std::vector` causes friction and these types won't serialize\nor reflect correctly.\n\n## When to use this skill\n\n- Storing collections: choose `TArray`/`TMap`/`TSet` over `std::vector`/`std::map`/`std::set`.\n- String work: pick `FString` (mutable), `FName` (identifier),",
+    "name": "core-types-and-containers",
+    "description": "Use Unreal's core C++ types instead of the standard library \u2014 containers",
+    "FText, between std": ": and UE containers, or between FRotator and FQuat for rotation.",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Core C++ & Memory Architecture",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "containers.md",
+      "math-types.md",
+      "strings-and-text.md",
+      "utility-types.md"
+    ]
+  },
+  {
+    "dir": "cpp-fundamentals",
+    "raw_body": "# Unreal Engine C++ fundamentals\n\nUnreal C++ is standard C++ augmented by a **reflection layer** generated by the Unreal Header Tool\n(UHT). Getting the reflection macros right determines whether your code compiles, appears in\nBlueprints, replicates correctly, and survives garbage collection.\n\n## When to use this skill\n\n- Creating or editing any `U*`/`A*` class or `F*` struct in C++.\n- Exposing a member or function to Blueprints, the editor, or network replication.\n- Diagnosing UHT errors (\"Unrec",
+    "name": "cpp-fundamentals",
+    "description": "Write correct Unreal Engine C++ using the UObject reflection system \u2014 UCLASS/USTRUCT/",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Core C++ & Memory Architecture",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "object-creation-and-gc.md",
+      "reflection-macros.md",
+      "uobject-lifecycle-and-cdo.md"
+    ]
+  },
+  {
+    "dir": "data-driven-design",
+    "raw_body": "# Data-driven design\n\nHardcoding gameplay values (item stats, enemy configs, balance numbers, curves) makes iteration\nslow and risky. Move them into assets and config objects that designers can edit without\nrecompiling. The choice of container drives every downstream workflow.\n\n## When to use this skill\n\n- Defining sets of similar records (items, enemies, weapons, abilities, loot).\n- One-off structured config objects (boss setup, game-mode tuning, single-character stats).\n- Values that vary over",
+    "name": "data-driven-design",
+    "description": "Drive Unreal gameplay from externally-editable data instead of hardcoded values \u2014",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Data Systems & Subsystems",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "config-and-developer-settings.md",
+      "curves-and-runtime-data.md",
+      "data-assets-and-validation.md",
+      "datatables-and-composite.md"
+    ]
+  },
+  {
+    "dir": "debugging-techniques",
+    "raw_body": "# Debugging techniques\n\nPick the tool that fits the question:\n\n| Question | Tool |\n|---|---|\n| What value / did this run? | `UE_LOG` / `ensure` \u2014 see `logging-and-assertions` |\n| Where in space is this thing? | `DrawDebug*` helpers |\n| What happened over the last N seconds? | Visual Logger |\n| What is the AI/gameplay system thinking right now? | Gameplay Debugger |\n| Crash / step through logic? | Native debugger (VS/Rider) |\n| Frame time, draw calls, physics cost? | `profiling-and-optimization` ",
+    "name": "debugging-techniques",
+    "description": "Debug Unreal C++ and gameplay code \u2014 native debugger usage (VS/Rider, natvis, Live",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Profiling, Debugging & Automation",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "draw-debug-and-console.md",
+      "gameplay-debugger.md",
+      "visual-logger.md"
+    ]
+  },
+  {
+    "dir": "delegates-and-events",
+    "raw_body": "# Delegates & events\n\nDelegates are Unreal's type-safe function-pointer/observer system. There are three\nfamilies \u2014 pick the right one before writing any binding code, because they differ in\nBlueprint visibility, binding API, and serialization capability.\n\n## When to use this skill\n\n- One object needs to notify others when something happens (observer pattern).\n- Exposing a C++ event that Blueprints can subscribe to (`BlueprintAssignable`).\n- Decoupling systems: broadcast an event instead of call",
+    "name": "delegates-and-events",
+    "description": "Wire up callbacks and events in Unreal C++ using delegates \u2014 single-cast",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Core C++ & Memory Architecture",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "binding-and-lifetime.md",
+      "delegate-types-matrix.md",
+      "dynamic-and-blueprint.md"
+    ]
+  },
+  {
+    "dir": "editor-scripting-and-python",
+    "raw_body": "# Editor scripting & Python\n\nEverything in this skill is **editor-only**: it lives in editor modules or behind\n`WITH_EDITOR` and is stripped from packaged games. The two main paths are: the\n**Python Script Plugin** (`unreal` module) for quick automation and pipeline scripts, and\n**Blutility** (Editor Utility Widgets/Blueprints) for in-editor UI tools callable by\nartists and designers.\n\n## When to use this skill\n\n- Batch operations on assets \u2014 rename, set properties, reimport, generate LODs.\n- Cu",
+    "name": "editor-scripting-and-python",
+    "description": ">",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Editor Scripting & Packaging",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "editor-subsystems.md",
+      "editor-utility-widgets.md",
+      "python-api.md"
+    ]
+  },
+  {
+    "dir": "enhanced-input",
+    "raw_body": "# Enhanced Input\n\nEnhanced Input is the modern UE input system. It is data-driven: **Input Actions** define what\na player can do, **Input Mapping Contexts** map physical keys to actions (with optional\nmodifiers and triggers on each mapping), and the **Enhanced Input Local Player Subsystem**\npushes and pops contexts at runtime. Legacy `DefaultInput.ini` axis/action mappings still\ncompile but are deprecated and should be avoided in new code.\n\n## When to use this skill\n\n- Setting up player controls",
+    "name": "enhanced-input",
+    "description": "Implement player input with Unreal's Enhanced Input system \u2014 UInputAction (data",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Input & Control Systems",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "actions-and-contexts.md",
+      "binding-and-setup.md",
+      "modifiers-and-triggers.md"
+    ]
+  },
+  {
+    "dir": "game-thread-performance",
+    "raw_body": "# Game-thread performance\n\nThe game thread is the main bottleneck for many Unreal projects: it owns actor ticking,\nBlueprint execution, input, physics callbacks, and UI updates. If the game thread misses\nits per-frame budget, the frame is delayed even when the GPU is idle.\n\n## When to use this skill\n\n- Frame rate feels low but the GPU looks underused.\n- `stat unit` or `stat game` shows the Game thread dominating the frame.\n- Tick-heavy actors, Blueprint hot paths, or frequent `Tick()` work are c",
+    "name": "game-thread-performance",
+    "description": "Explain how game-thread time drives frame rate and how to optimize it. Use when profiling CPU-bound frame-time spikes, tick-heavy actors, hitches, or when deciding whether to move work off the game thread.",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Profiling, Debugging & Automation",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": false,
+    "ref_files": []
+  },
+  {
+    "dir": "gameplay-ability-system",
+    "raw_body": "# Gameplay Ability System (GAS)\n\nGAS is Epic's framework for abilities, attributes, and effects with networking built in. It is\npowerful but heavyweight \u2014 adopt it for games with many interacting abilities/stats; for a couple\nof simple actions, plain components may be simpler.\n\n## When to use this skill\n\n- Implementing player or enemy abilities with cooldowns, costs, and tag gating.\n- Attributes (health/stamina/mana/armor) modified by buffs, debuffs, and damage.\n- Networked, server-authoritative",
+    "name": "gameplay-ability-system",
+    "description": "Build abilities, attributes, and effects with Unreal's Gameplay Ability System (GAS)",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "ability-system-component.md",
+      "ability-tasks-and-cues.md",
+      "attributes-and-effects.md",
+      "gameplay-abilities.md"
+    ]
+  },
+  {
+    "dir": "gameplay-architecture-planning",
+    "raw_body": "# Gameplay architecture planning\n\nConvert a feature request into a concrete Unreal Engine design before code or asset work begins.\nThe result should reduce implementation ambiguity without inventing abstractions the project does\nnot need.\n\nThis is an architecture and planning skill, not a mandatory gate. If the user asked only for a\ndesign, stop at the design. If the user also asked for implementation, perform the design pass\nbriefly and continue within the authorized scope.\n\n## When to use this",
+    "name": "gameplay-architecture-planning",
+    "description": "Design and plan Unreal Engine gameplay systems before implementation. Turns an",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "decision-matrices.md"
+    ]
+  },
+  {
+    "dir": "gameplay-framework",
+    "raw_body": "# Gameplay framework\n\nThe gameplay framework is the set of base classes Unreal spawns and wires together to run a\ngame. Choosing the *right* class for each piece of logic is the single most important design\ndecision in UE gameplay code.\n\n## When to use this skill\n\n- Creating a new game mode, game state, player controller, pawn, player state, or HUD class.\n- Implementing player login, spawn, respawn, or possession logic.\n- Deciding where a piece of state lives (server-only vs replicated vs per-pl",
+    "name": "gameplay-framework",
+    "description": "Implement Unreal's gameplay framework in C++ \u2014 GameInstance, AGameModeBase/AGameMode,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "controllers-and-pawns.md",
+      "gamemode-and-state.md",
+      "init-and-login-flow.md"
+    ]
+  },
+  {
+    "dir": "gameplay-tags",
+    "raw_body": "# Gameplay Tags\n\nGameplay Tags are hierarchical, interned `FName` labels \u2014 `State.Stunned`,\n`Ability.Attack.Melee`, `Event.Reset` \u2014 registered centrally so every system speaks\nthe same vocabulary. They replace scattered enums/booleans/string IDs with a single,\nextensible, designer-editable taxonomy.\n\n## When to use this skill\n\n- Modeling states/categories/flags (\"is stunned\", \"fire damage type\", \"ability = dash\").\n- Replacing brittle enums/bools/string IDs with extensible, queryable labels.\n- In",
+    "name": "gameplay-tags",
+    "description": "Use Gameplay Tags in Unreal C++ \u2014 hierarchical FName-based labels (FGameplayTag,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "containers-and-queries.md",
+      "native-tags.md",
+      "tag-driven-patterns.md"
+    ]
+  },
+  {
+    "dir": "importing-content",
+    "raw_body": "# Importing content\n\nMost \"it looks wrong in Unreal\" problems are import-settings problems. Know the Interchange\nframework's data flow, the settings that change geometry and shading, and how assets store\ntheir import provenance so reimport stays predictable.\n\n## When to use this skill\n\n- Importing static meshes, skeletal meshes, textures, or audio from Blender, Maya, Substance\n  Painter, or other DCC tools.\n- Wrong scale, rotation, flipped normals, or washed-out/over-saturated textures after imp",
+    "name": "importing-content",
+    "description": "Import external assets into Unreal using the Interchange framework (UInterchangeManager,",
+    "and the legacy FBX pipeline (UFbxFactory / UnFbx": ":FFbxImporter). Covers the three-stage",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Editor Scripting & Packaging",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "interchange-framework.md",
+      "mesh-and-texture-import.md",
+      "reimport-and-import-data.md"
+    ]
+  },
+  {
+    "dir": "integrator",
+    "raw_body": "# Integrator \u2014 Cross-Module Validator\n\n## System Prompt\n\nYou are the **Integration Agent** for a UE5 Battle Royale project. Your job is to verify that code produced by different worker agents is compatible when assembled together.\n\nYou receive QA-approved code from the Orchestrator and validate cross-module concerns.\n\n### Your Responsibilities\n1. **Include Chain Validation**: Verify all #include paths resolve. Check that headers exist and are correctly referenced.\n2. **Shared Type Consistency**:",
+    "name": "integrator",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Team Leads",
+    "has_references": true,
+    "ref_files": [
+      "compile-test.md",
+      "dependency-graph.md",
+      "integration-map.md"
+    ]
+  },
+  {
+    "dir": "landscape-and-foliage",
+    "raw_body": "# Landscape & foliage\n\nThree complementary systems cover terrain and environment population:\n\n| System | Actor / Component | Purpose |\n|---|---|---|\n| Landscape | `ALandscape` \u2192 `ULandscapeComponent` | Heightmap terrain with painted weight layers and splines |\n| Foliage / HISM | `AInstancedFoliageActor` \u2192 HISM | Hand-painted instanced vegetation at low draw-call cost |\n| PCG | `UPCGComponent` + `UPCGGraph` | Rule-based graph pipeline for procedural placement |\n\n## When to use this skill\n\n- Creat",
+    "name": "landscape-and-foliage",
+    "description": "Terrain, instanced vegetation, and procedural environment generation in Unreal C++",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "World Partition & Open World",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "foliage-and-hism.md",
+      "landscape.md",
+      "pcg.md"
+    ]
+  },
+  {
+    "dir": "levels-and-world-partition",
+    "raw_body": "# Levels & World Partition\n\nA `UWorld` is the running game world. It always has one **persistent level** (`UWorld::PersistentLevel`)\nand any number of streamed levels. For large worlds, World Partition \u2014 the default for new\nprojects in UE5 \u2014 replaces hand-managed sublevels with automatic spatial streaming around\n**streaming sources**.\n\n## When to use this skill\n\n- Organizing world content across levels and keeping memory under control.\n- Building an open world or large level that cannot be fully",
+    "name": "levels-and-world-partition",
+    "description": "Structure and stream Unreal worlds in C++ \u2014 UWorld (persistent level +",
+    "sublevel streaming (UGameplayStatics": ":LoadStreamLevel / UnloadStreamLevel, Level Streaming",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "World Partition & Open World",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "data-layers-and-hlod.md",
+      "level-instances.md",
+      "world-partition-streaming.md"
+    ]
+  },
+  {
+    "dir": "lighting-and-lumen",
+    "raw_body": "# Lighting & Lumen\n\nUE5's default lighting pipeline is **fully dynamic**: Lumen provides global illumination\n(GI) and reflections without a bake. Understanding the light component hierarchy,\nmobility rules, and the Lumen/post-process stack lets you get correct and performant\nresults quickly.\n\n## When to use this skill\n\n- Creating or modifying a light component in C++ (type selection, intensity/color/units,\n  attenuation, IES profiles, light functions).\n- Choosing the right mobility for a light a",
+    "name": "lighting-and-lumen",
+    "description": "Light Unreal scenes in C++ and configure them correctly \u2014 light component",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Rendering, Nanite & Materials",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "light-components-and-mobility.md",
+      "lumen-gi-and-reflections.md",
+      "shadows-and-postprocess.md"
+    ]
+  },
+  {
+    "dir": "logging-and-assertions",
+    "raw_body": "# Logging & assertions\n\nGood diagnostics make UE bugs findable in minutes rather than hours. Use **log categories**\n(not `LogTemp`), pick the right **verbosity** so logs stay scannable, and choose **check vs\nensure** deliberately \u2014 one halts, the other reports and continues.\n\n## When to use this skill\n\n- Defining a log category for a new game module or feature subsystem.\n- Adding `UE_LOG` / `UE_LOGFMT` calls with the right verbosity for the context.\n- Choosing between `check`, `verify`, and `ens",
+    "name": "logging-and-assertions",
+    "description": "Add structured logging and runtime checks to Unreal C++ \u2014 UE_LOG with custom log",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Core C++ & Memory Architecture",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "assertions.md",
+      "log-categories-and-verbosity.md",
+      "structured-logging.md"
+    ]
+  },
+  {
+    "dir": "materials-and-shaders",
+    "raw_body": "# Materials & shaders\n\nUE materials are node graphs that compile to HLSL shaders. The central\nworkflow idea is **parameters + instances**: one parameterized base material,\ncheap asset variants (constant instances), and runtime-tweakable copies\n(dynamic instances). Understanding where to put logic \u2014 parameter vs. static\nswitch vs. separate material \u2014 determines both quality and compile cost.\n\n## When to use this skill\n\n- Creating a material or family of material variants from a shared base.\n- Cha",
+    "name": "materials-and-shaders",
+    "description": "Author and drive Unreal materials \u2014 UMaterial (the node graph asset), material",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Rendering, Nanite & Materials",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "material-cpp-and-collections.md",
+      "material-graph-and-domains.md",
+      "material-instances-and-parameters.md"
+    ]
+  },
+  {
+    "dir": "memory-and-gc",
+    "raw_body": "# Memory & garbage collection\n\nUnreal has **two** memory worlds: garbage-collected `UObject`s managed by the engine's GC, and\nordinary C++ heap objects you manage with smart pointers or RAII. Mixing them up causes most UE\ncrashes. The one rule that prevents the majority of them: **a UObject stays alive only while\nsomething reachable from the root set holds it in a `UPROPERTY` (or an equivalent GC-tracked\nreference).**\n\n## When to use this skill\n\n- Choosing which pointer type to use for a UObject",
+    "name": "memory-and-gc",
+    "description": "Manage UObject lifetime and plain C++ memory in Unreal Engine. Covers the garbage",
+    "FGCObject": ":AddReferencedObjects, AddToRoot/RemoveFromRoot, MarkAsGarbage and IsValid checks,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Core C++ & Memory Architecture",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "object-pointer-types.md",
+      "smart-pointers.md",
+      "uobject-gc-and-roots.md"
+    ]
+  },
+  {
+    "dir": "meshes-static-and-skeletal",
+    "raw_body": "# Static & skeletal meshes\n\nStatic meshes are rigid geometry rendered via `UStaticMeshComponent`. Skeletal meshes\ndeform through a bone hierarchy driven by `USkeletalMeshComponent`. Choosing the right\nmesh/component type and the right collision, LOD, and instancing strategy drives both\nvisual quality and runtime performance.\n\n## When to use this skill\n\n- Assigning or swapping mesh assets on components in C++.\n- Overriding material slots per-component or creating a `UMaterialInstanceDynamic`.\n- A",
+    "name": "meshes-static-and-skeletal",
+    "description": "Work with static and skeletal meshes in Unreal C++ \u2014 UStaticMesh +",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Rendering, Nanite & Materials",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "instanced-meshes.md",
+      "materials-lods-collision.md",
+      "skeletal-meshes.md",
+      "static-meshes.md"
+    ]
+  },
+  {
+    "dir": "module-and-build-system",
+    "raw_body": "# Modules & the build system\n\nEvery Unreal C++ feature lives in a **module**: a directory that compiles into its own DLL\n(modular builds) or static lib (monolithic builds). **UnrealBuildTool (UBT)** reads C#-style\n`*.Build.cs` files (one per module) and `*.Target.cs` files (one per build target) to decide\nwhat to compile and link. Most \"won't compile / won't link\" problems are really \"wrong module\ndependency\" problems.\n\nNote: UE modules are independent of C++20 language modules.\n\n## When to use ",
+    "name": "module-and-build-system",
+    "description": "Structure Unreal C++ into modules and configure the build with *.Build.cs",
+    "discovers and compiles modules. Related to plugins": "see plugins-and-modules for packaging",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Build, Modular Plugins & Standards",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "build-cs-reference.md",
+      "module-cpp-and-phases.md",
+      "target-cs-reference.md"
+    ]
+  },
+  {
+    "dir": "mover-movement-system",
+    "raw_body": "# Mover movement system\n\n**Mover** is Epic's experimental replacement for `UCharacterMovementComponent`\n(CMC). It moves any actor \u2014 not just capsule-based characters \u2014 through a\n**data-driven, deterministic simulation** with rollback networking. Movement\nlogic lives in modular objects (movement modes, layered moves, transitions,\nmodifiers) instead of a hard-coded enum + `switch`, and all state flows through\nreplicated snapshot structs instead of direct component mutation.\n\nStatus in 5.8: **Exper",
+    "name": "mover-movement-system",
+    "description": "Implement actor movement with Unreal's experimental Mover plugin",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Gameplay Framework & Movement",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "layered-moves-and-instant-effects.md",
+      "modes-transitions-and-modifiers.md",
+      "networking-and-backends.md"
+    ]
+  },
+  {
+    "dir": "nanite-and-rendering",
+    "raw_body": "# Nanite & rendering\n\nUE's renderer couples **Nanite** (virtualized geometry), **Lumen** (dynamic GI \u2014 see\n`lighting-and-lumen`), and **Virtual Shadow Maps** into a coherent high-fidelity pipeline.\nThis skill covers Nanite and the surrounding rendering systems an agent needs to configure\nand reason about.\n\n## When to use this skill\n\n- Enabling Nanite on static or skeletal meshes in C++, editor scripting, or mesh settings.\n- Diagnosing why Nanite does/doesn't apply (translucency, forward renderin",
+    "name": "nanite-and-rendering",
+    "description": "Configure Nanite virtualized geometry (FMeshNaniteSettings on static and skeletal",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Rendering, Nanite & Materials",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "nanite.md",
+      "rendering-pipeline.md",
+      "virtual-textures-and-shadows.md"
+    ]
+  },
+  {
+    "dir": "navigating-engine-source",
+    "raw_body": "# Navigating the Unreal Engine source\n\nThe engine's own C++ source is the ground truth for every signature, specifier,\nand include path. Before asserting any API detail, **verify it in the source**.\nMemory is often a version or two stale.\n\n## When to use this skill\n\n- You need the *exact* signature of a `UFUNCTION`/`UPROPERTY`/virtual override,\n  or its specifiers and `meta=(...)` clauses.\n- You are unsure whether an API exists, was renamed, or moved in 5.8.\n- You need the correct `#include` pat",
+    "name": "navigating-engine-source",
+    "description": "Locate, read, and cite exact Unreal Engine APIs in the on-disk engine source",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Build, Modular Plugins & Standards",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "finding-apis.md",
+      "module-map.md",
+      "source-conventions.md"
+    ]
+  },
+  {
+    "dir": "networking-and-replication",
+    "raw_body": "# Networking & replication\n\nUnreal multiplayer is **server-authoritative**: the server holds the ground truth and replicates\nstate to clients; clients send intent to the server via RPCs. Nearly every multiplayer bug is an\nauthority or replication-setup mistake. Design state ownership first (`gameplay-framework`), then\nreplicate it correctly.\n\n## When to use this skill\n\n- Replicating actor state (health, ammo, doors, scores) to all clients.\n- Letting a client ask the server to act (fire, interact",
+    "name": "networking-and-replication",
+    "description": "Implement server-authoritative multiplayer in Unreal C++ \u2014 network roles and",
+    "(MARK_PROPERTY_DIRTY_FROM_NAME, FDoRepLifetimeParams": ":bIsPushBased), FFastArraySerializer,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Networking & Replication",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "fast-arrays.md",
+      "property-replication.md",
+      "replication-conditions-and-push-model.md",
+      "rpcs.md"
+    ]
+  },
+  {
+    "dir": "niagara-vfx",
+    "raw_body": "# Niagara VFX\n\nNiagara is Unreal's visual-effects system. It replaced **Cascade** (legacy \u2014 avoid for new work;\na converter plugin exists). Effects are authored in the Niagara Editor as **Systems** composed of\n**Emitters** built from **Modules**, then spawned and parameterized from gameplay C++. Your role\nin C++ is: spawn a system, attach it, set its User Parameters, and manage its lifetime.\n\n## When to use this skill\n\n- Spawning particle/VFX at a world location or attached to an actor or socket",
+    "name": "niagara-vfx",
+    "description": "Create and control visual effects using Unreal's Niagara system \u2014 UNiagaraSystem,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "VFX (Niagara) & Audio (MetaSounds)",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "data-interfaces-and-performance.md",
+      "spawning-and-parameters.md",
+      "system-and-emitter-model.md"
+    ]
+  },
+  {
+    "dir": "orchestrator",
+    "raw_body": "# Orchestrator \u2014 Master Conductor Agent\n\n## System Prompt\n\nYou are the **Master Orchestrator** for a 100-player 3rd-person Battle Royale game set in Bak\u0131rk\u00f6y, Istanbul, built on Unreal Engine 5. You coordinate a team of 7 specialized agents:\n\n- **5 Worker Agents** (Map/World, Weapons/Combat, AI/Bots, GameLoop/Backend, Building System)\n- **1 QA Reviewer Agent** (code quality and UE5 best practices)\n- **1 Integrator Agent** (cross-module compatibility and compile testing)\n\n### Your Responsibilitie",
+    "name": "orchestrator",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Team Leads",
+    "has_references": true,
+    "ref_files": [
+      "review-protocol.md",
+      "task-queue.md",
+      "team-roster.md"
+    ]
+  },
+  {
+    "dir": "packaging-and-deployment",
+    "raw_body": "# Packaging & deployment\n\nShipping an Unreal project involves three distinct stages that run in sequence:\n**build** (compile the game executable), **cook** (convert assets to the target\nplatform's runtime format), and **package** (assemble the cooked assets and executable\ninto a distributable build, typically inside pak/IoStore containers). Each stage can fail\nindependently; diagnosing a failure means identifying which stage it belongs to.\n\n## When to use this skill\n\n- Producing a runnable build",
+    "name": "packaging-and-deployment",
+    "description": "Cook, package, and ship an Unreal project \u2014 the cook process (by-the-book vs",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Editor Scripting & Packaging",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "buildcookrun-and-uat.md",
+      "cook-and-build-configs.md",
+      "pak-iostore-and-chunking.md",
+      "platform-and-dlc.md"
+    ]
+  },
+  {
+    "dir": "physics-and-chaos",
+    "raw_body": "# Physics & collision (Chaos)\n\nChaos is the physics engine in UE. Most gameplay needs three things from it: **collision**\n(what blocks/overlaps what), **queries** (traces/sweeps to ask about the world), and\noccasionally **simulation** (rigid bodies, ragdolls, constraints). Collision setup mistakes\nare the most common source of \"my overlap/hit never fires\" bugs.\n\n## When to use this skill\n\n- Setting up what collides with what (channels, presets, per-channel responses).\n- Making trigger volumes or",
+    "name": "physics-and-chaos",
+    "description": "Implement collision, physics simulation, and world queries using Unreal's Chaos",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Physics & Collision (Chaos)",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "collision-channels-and-profiles.md",
+      "physics-simulation-and-constraints.md",
+      "traces-and-queries.md"
+    ]
+  },
+  {
+    "dir": "plugins-and-modules",
+    "raw_body": "# Plugins & modules\n\nA **plugin** is a self-contained, portable feature bundle: a `.uplugin` descriptor file plus\none or more C++ modules and optional content/resources. Use plugins when the feature is\nreusable across projects, optional (so it can be disabled), or ships as an editor tool.\nCompare with project modules (`module-and-build-system`): project modules compile into your\ngame and can't travel without it; plugins drop into any project's `Plugins/` folder.\n\n## When to use this skill\n\n- Cre",
+    "name": "plugins-and-modules",
+    "description": "Create, structure, and manage Unreal Engine plugins \u2014 the .uplugin descriptor",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Build, Modular Plugins & Standards",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "plugin-dependencies-and-packaging.md",
+      "plugin-structure-and-modules.md",
+      "uplugin-descriptor.md"
+    ]
+  },
+  {
+    "dir": "profiling-and-optimization",
+    "raw_body": "# Profiling & optimization\n\nOptimize by measurement, not guesswork: capture data, find the actual hotspot, fix it,\nre-measure. The three tool layers are **Unreal Insights** (deep trace-based profiling),\nthe in-game **stat** commands (quick triage), and **instrumentation** macros for your own\ncode. Start with stat commands to identify which thread owns the frame budget, then open\nInsights for a precise call-by-call view.\n\n## When to use this skill\n\n- Frame rate is low or hitching; determining whe",
+    "name": "profiling-and-optimization",
+    "description": "Profile and optimize Unreal Engine performance \u2014 Unreal Insights (trace-based",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Profiling, Debugging & Automation",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "instrumenting-cpp.md",
+      "memory-profiling.md",
+      "stat-commands.md",
+      "unreal-insights-and-trace.md"
+    ]
+  },
+  {
+    "dir": "project-structure",
+    "raw_body": "# Project structure\n\nAn Unreal project is a `.uproject` file plus a set of well-known folders. Knowing what\neach folder is for (and what is generated vs. authored) prevents committing junk, editing\nthe wrong config file, or losing work across machines.\n\n## When to use this skill\n\n- Creating a new project or navigating an unfamiliar existing one.\n- Editing the `.uproject`: adding/removing modules, enabling/disabling plugins, or\n  changing `EngineAssociation`.\n- Changing project settings by editin",
+    "name": "project-structure",
+    "description": "Navigate and configure an Unreal Engine project \u2014 the .uproject descriptor",
+    "(FProjectDescriptor": "FileVersion, EngineAssociation, Modules, Plugins), the standard",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Build, Modular Plugins & Standards",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "config-system.md",
+      "folder-layout-and-vcs.md",
+      "uproject-and-modules.md"
+    ]
+  },
+  {
+    "dir": "qa-reviewer",
+    "raw_body": "# QA Reviewer \u2014 Code Quality Guardian\n\n## System Prompt\n\nYou are the **Quality Assurance Reviewer** for a 100-player Battle Royale game built on Unreal Engine 5. Your job is to review every piece of code produced by worker agents before it gets integrated into the project.\n\nYou are NOT a worker \u2014 you do NOT write gameplay code. You READ, ANALYZE, and JUDGE code.\n\n### Your Review Criteria (in priority order)\n\n1. **Correctness**: Does the code do what the STD specifies? Are the numbers right (dama",
+    "name": "qa-reviewer",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Team Leads",
+    "has_references": true,
+    "ref_files": [
+      "code-standards.md",
+      "review-checklist.md",
+      "ue5-best-practices.md"
+    ]
+  },
+  {
+    "dir": "save-and-load",
+    "raw_body": "# Save & load\n\nPersistence uses a **`USaveGame`** object: put the data to persist in `UPROPERTY` members, then\nwrite the object to a named slot and read it back. The slot API lives in `UGameplayStatics`; the\nactual file I/O is delegated to `ISaveGameSystem`, which is swapped per platform.\n\n## When to use this skill\n\n- Saving and restoring player progress, inventory, world flags, or per-player settings.\n- Checking whether a save slot exists; deleting or enumerating slots; multiple slot/profile fl",
+    "name": "save-and-load",
+    "description": "Persist and restore game data in Unreal C++ using the SaveGame system \u2014 define a",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Data Systems & Subsystems",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "savegame-objects-and-slots.md",
+      "serializing-actor-state.md",
+      "versioning-and-migration.md"
+    ]
+  },
+  {
+    "dir": "sequencer-and-cinematics",
+    "raw_body": "# Sequencer & cinematics\n\nSequencer is Unreal's non-linear timeline editor. A **Level Sequence** (`ULevelSequence`) binds\nactors and animates their properties via tracks; you play it at runtime through a\n`ULevelSequencePlayer` for cutscenes or scripted moments, and feed gameplay events back through\nevent tracks or the `OnFinished` delegate.\n\n## When to use this skill\n\n- Triggering a cutscene or scripted in-game beat from C++ and reacting when it ends.\n- Overriding which actors a sequence control",
+    "name": "sequencer-and-cinematics",
+    "description": "Create and drive Unreal Engine cinematics from C++ \u2014 ULevelSequence (the cinematic",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Animation, Control Rig & Cinematics",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "cameras-and-cuts.md",
+      "level-sequence-and-player.md",
+      "movie-render-queue.md",
+      "tracks-and-bindings.md"
+    ]
+  },
+  {
+    "dir": "subsystems",
+    "raw_body": "# Subsystems\n\nA **Subsystem** is a `UObject`-derived singleton whose lifetime matches a specific engine\nconstruct (engine process, game instance, world, or local player). The engine creates it\nautomatically when the owning object is created and destroys it when the owner is torn down \u2014\nno manual instancing, no GC juggling, and Blueprint/Python exposure comes for free.\n\nSubsystems replace hand-rolled static singletons and \"manager actors\". They are the canonical\npattern for cross-cutting services",
+    "name": "subsystems",
+    "description": ">",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Data Systems & Subsystems",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "choosing-a-subsystem.md",
+      "lifecycle-and-access.md",
+      "subsystem-types.md"
+    ]
+  },
+  {
+    "dir": "timers-and-async",
+    "raw_body": "# Timers & async work\n\nMost \"do this later / every N seconds\" needs belong in a **timer**, not `Tick`. For\nCPU-intensive work, move computation off the game thread using `Async` or the Tasks System,\nthen marshal results back \u2014 UObjects and actors must only be touched on the game thread.\n\n## When to use this skill\n\n- A delay (\"respawn in 3 s\") or repeating callback (\"regen every 0.5 s\").\n- Replacing a per-frame accumulator with a world-time-aware periodic timer.\n- Deferring one frame (`SetTimerFo",
+    "name": "timers-and-async",
+    "description": "Schedule and defer work in Unreal C++ \u2014 FTimerManager (SetTimer with FTimerHandle,",
+    "the UE Tasks System UE": ":Tasks::Launch/FTask/FPipe), FTSTicker for non-actor ticking,",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "Core C++ & Memory Architecture",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "async-and-tasks.md",
+      "threads-and-runnables.md",
+      "tickers-and-latent.md",
+      "timer-manager.md"
+    ]
+  },
+  {
+    "dir": "ue5-architecture",
+    "raw_body": "# Quick Start\n- Collect current module list, `*.Build.cs`, and major gameplay/UI systems.\n- Propose one target module graph before writing code.\n- Output module responsibilities and ownership in a table.\n\n# Workflow\n- Identify runtime, editor, UI, networking, and data modules from current codebase.\n- Define Public API for each module as minimal headers and Blueprint surface.\n- Define Private implementation boundaries and include rules.\n- Define `PublicDependencyModuleNames` and `PrivateDependenc",
+    "name": "ue5-architecture",
+    "description": "UE5.6-UE5.8 architecture planning and module boundary design for Unreal projects. Use when requests involve module layout, Build.cs dependencies, reflection exposure strategy, Public/Private API boundaries, naming conventions, and preventing circular dependencies.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "build-cs-patterns.md",
+      "module-layout.md",
+      "project-adapter.md",
+      "ue5-engine-module-index-v2.md",
+      "ue5-engine-module-index.md"
+    ]
+  },
+  {
+    "dir": "ue5-auto-assistant",
+    "raw_body": "# Quick Start\n- Treat this as the default entry for UE5.6-UE5.8 requests.\n- Parse user intent first without requiring module names.\n- Route to `ue5-module-router` when module-level precision is needed.\n\n# Workflow\n- Detect request type: Blueprint, C++, UI, save/load, networking, world interaction, PCG/procedural generation, debugging, performance, packaging.\n- If module names appear, delegate routing to `ue5-module-router`.\n- If module names do not appear, route by intent:\n  - Blueprint -> `ue5-",
+    "name": "ue5-auto-assistant",
+    "description": "UE5.6-UE5.8 automatic assistant entry for beginners. Use when users ask Unreal questions without naming a specific skill. Auto-route to the most precise UE5 skill and recommend dedicated MCP tools.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "beginner-smoke-prompts.md",
+      "mcp-skill-mapping.md",
+      "natural-language-triggers.md"
+    ]
+  },
+  {
+    "dir": "ue5-blueprint-workflow",
+    "raw_body": "# Quick Start\n- Identify target Blueprint asset and graph (`EventGraph` or function graph).\n- Confirm requested behavior as event -> logic -> output chain.\n- Decide input route first: legacy key event or Enhanced Input action event.\n- Produce graph-level steps first, then exact node/pin wiring details.\n\n# API Anchors (UE5.6-UE5.8)\n- Keyboard and event node anchors:\n  - `UK2Node_InputKey`, `UK2Node_InputAction`, `UK2Node_InputActionEvent`\n  - `UK2Node_CallFunction`, `UK2Node_CustomEvent`\n- Enhanc",
+    "name": "ue5-blueprint-workflow",
+    "description": "UE5.6-UE5.8 Blueprint graph workflow for feature implementation, input events, node wiring, and graph validation. Use when requests involve adding Blueprint logic, keyboard input behavior, function chains, event graph edits, or pin-level connection guidance.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "bp-node-patterns.md",
+      "hotkey-fast-path.md",
+      "project-adapter.md"
+    ]
+  },
+  {
+    "dir": "ue5-cpp-gameplay",
+    "raw_body": "# Quick Start\n- Confirm target class type (`AActor`, `UActorComponent`, `UObject`, `USaveGame`, etc.).\n- Define required Blueprint-facing API before implementation.\n- Output both header and source files together.\n\n# API Anchors (UE5.6-UE5.8)\n- Reflection and UObject anchors:\n  - `UCLASS`, `USTRUCT`, `UENUM`, `UINTERFACE`, `GENERATED_BODY()`\n  - `UPROPERTY(...)`, `UFUNCTION(...)`\n- Core gameplay type anchors:\n  - `AActor`, `UActorComponent`, `UDataAsset`, `UGameInstanceSubsystem`\n  - `TObjectPtr<",
+    "name": "ue5-cpp-gameplay",
+    "description": "UE5.6-UE5.8 gameplay C++ implementation for Actors, Components, DataAssets, and gameplay logic. Use when requests ask to write .h/.cpp pairs, expose UPROPERTY/UFUNCTION to Blueprint, use GameplayTags, or build reusable component-based systems.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "cpp-class-template.md",
+      "project-adapter.md",
+      "reflection-macro-checklist.md"
+    ]
+  },
+  {
+    "dir": "ue5-debug-validation",
+    "raw_body": "# Quick Start\n- Reproduce issue with minimal steps.\n- Collect output log lines and relevant actor/asset state.\n- Classify fault domain: data, Blueprint, C++, networking, or editor config.\n\n# API Anchors (UE5.6-UE5.8)\n- Core diagnostics anchors:\n  - `UE_LOG(...)`\n  - `ensure(...)`, `ensureMsgf(...)`\n  - `check(...)`, `checkf(...)`\n- Runtime debug output anchors:\n  - `UEngine::AddOnScreenDebugMessage(...)`\n  - `UKismetSystemLibrary::PrintString(...)`\n- Structured log review anchors:\n  - `FMessageL",
+    "name": "ue5-debug-validation",
+    "description": "UE5.6-UE5.8 debugging and validation workflow for logs, asset checks, and regression triage. Use when requests involve troubleshooting why gameplay does not work, validating expected output, narrowing minimal repro, and producing concrete fix steps.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "log-triage.md",
+      "minimal-repro-template.md",
+      "project-adapter.md"
+    ]
+  },
+  {
+    "dir": "ue5-module-router",
+    "raw_body": "# Quick Start\n- Extract explicit module names from user prompt first.\n- If module is found, route by exact module mapping before keyword heuristics.\n- If module is not found, use aliases and layer context.\n\n# Workflow\n- Parse prompt for module candidates (for example `RenderCore`, `AIModule`, `AssetRegistry`).\n- Lookup module in `ue5-module-routing-table-final.csv`.\n- If multiple hits, prioritize:\n  1. exact module name match\n  2. Build.cs path similarity\n  3. alias overlap with prompt keywords\n",
+    "name": "ue5-module-router",
+    "description": "Route UE5.6-UE5.8 questions to the most precise skill using module names, aliases, intent keywords, and layer context. Works for explicit module prompts (RenderCore, AIModule, AssetRegistry) and natural language requests.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "routing-policy.md"
+    ]
+  },
+  {
+    "dir": "ue5-pcg-building",
+    "raw_body": "# Quick Start\n- Define generation target: blockout towers, modular facades, or lot-based building sets.\n- Define deterministic inputs: lot splines/points, district tags, style preset, and seed.\n- Define runtime mode: static bake, on-demand, or runtime scheduled generation.\n- Define output mode: Static Mesh instances first, Spawn Actor only for interactive/stateful parts.\n\n# API Anchors (UE5.6-UE5.8)\n- Runtime trigger and radii live on `UPCGComponent`:\n  - `EPCGComponentGenerationTrigger::Generat",
+    "name": "ue5-pcg-building",
+    "description": "UE5.6-UE5.8 PCG building generation workflow for modular buildings, blockouts, facade rules, and runtime generation. Use when requests involve Procedural Content Generation (PCG), Shape Grammar, lot-based building spawn, deterministic random seeds, density/filter pipelines, or converting designer constraints into reusable PCG graphs.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "pcg-building-graph-patterns.md",
+      "project-adapter.md",
+      "runtime-generation-validation.md",
+      "shape-grammar-building-pattern.md"
+    ]
+  },
+  {
+    "dir": "ue5-performance-packaging",
+    "raw_body": "# Quick Start\n- Confirm target platform and build configuration.\n- Collect current performance symptoms and packaging goal.\n- Output a pre-package checklist plus measurement plan.\n\n# API Anchors (UE5.6-UE5.8)\n- Runtime quality and frame-budget anchors:\n  - `UGameUserSettings::SetOverallScalabilityLevel(...)`\n  - `UGameUserSettings::SetFrameRateLimit(...)`\n  - `UGameUserSettings::ApplySettings(...)`\n- Packaging settings anchors:\n  - `UProjectPackagingSettings`\n  - `BuildConfiguration`, `MapsToCoo",
+    "name": "ue5-performance-packaging",
+    "description": "UE5.6-UE5.8 performance and packaging readiness workflow. Use when requests involve PIE performance checks, runtime stat review, pre-package validation, build configuration sanity, and release readiness checklists.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "prepackage-checklist.md",
+      "project-adapter.md"
+    ]
+  },
+  {
+    "dir": "ue5-save-load-replication",
+    "raw_body": "# Quick Start\n- Define what must persist and what must replicate.\n- Separate local save state from network runtime state.\n- Output data schema, save flow, load flow, and net flow.\n\n# API Anchors (UE5.6-UE5.8)\n- Save pipeline anchors:\n  - `USaveGame`\n  - `UGameplayStatics::CreateSaveGameObject(...)`\n  - `UGameplayStatics::SaveGameToSlot(...)`, `LoadGameFromSlot(...)`\n  - `UGameplayStatics::AsyncSaveGameToSlot(...)`, `AsyncLoadGameFromSlot(...)`\n- Replication anchors:\n  - `GetLifetimeReplicatedPro",
+    "name": "ue5-save-load-replication",
+    "description": "UE5.6-UE5.8 save/load and multiplayer replication workflow for gameplay systems. Use when requests involve SaveGame schema design, serialization, restore pipelines, RepNotify handling, RPC entry points, and server-authoritative validation.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "project-adapter.md",
+      "replication-checklist.md",
+      "savegame-schema-pattern.md"
+    ]
+  },
+  {
+    "dir": "ue5-ui-umg-slate",
+    "raw_body": "# Quick Start\n- Identify whether feature belongs to UMG, Slate, or hybrid bridge.\n- Define data source component/subsystem and UI binding point.\n- Output widget tree intent and runtime binding sequence.\n\n# API Anchors (UE5.6-UE5.8)\n- UMG lifecycle and viewport anchors:\n  - `UUserWidget::NativeConstruct()`, `UUserWidget::NativeDestruct()`\n  - `UUserWidget::AddToViewport(...)`\n  - `UWidget::RemoveFromParent()`\n  - `UWidget::SetVisibility(...)`\n  - `UWidget::SetKeyboardFocus()`\n- UMG input mode anc",
+    "name": "ue5-ui-umg-slate",
+    "description": "UE5.6-UE5.8 UI development workflow using UMG and Slate integration. Use when requests involve Widget Blueprint setup, Slate host widgets, lifecycle binding, input and focus handling, tooltip behavior, or viewport clamping logic.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "project-adapter.md",
+      "tooltip-patterns.md",
+      "umg-slate-bridge.md"
+    ]
+  },
+  {
+    "dir": "ue5-world-interaction",
+    "raw_body": "# Quick Start\n- Define interaction model: overlap-driven, trace-driven, or explicit use key.\n- Define actor set: pickup actor, optional spawner, optional visual mapping data asset.\n- Output runtime state transitions from spawn to interaction resolution.\n\n# API Anchors (UE5.6-UE5.8)\n- Detection anchors:\n  - `USphereComponent`, `UBoxComponent`\n  - `UPrimitiveComponent::OnComponentBeginOverlap`\n  - `UPrimitiveComponent::OnComponentEndOverlap`\n  - `FHitResult`\n- Trace anchors:\n  - `UWorld::LineTrace",
+    "name": "ue5-world-interaction",
+    "description": "UE5.6-UE5.8 world interaction systems for pickups, spawners, overlap/trace checks, and visual feedback. Use when requests involve interactive world actors, spawn logic, pickup behavior, interaction radius checks, success/failure feedback, and actor lifecycle control.",
+    "origin": "UnrealXu/UnrealEngine5-Skills",
+    "category": "UnrealXu Architectural & Pipeline",
+    "has_references": true,
+    "ref_files": [
+      "pickup-actor-pattern.md",
+      "project-adapter.md",
+      "spawner-randomization.md"
+    ]
+  },
+  {
+    "dir": "umg-and-slate",
+    "raw_body": "# UMG & Slate\n\n**UMG** is Unreal's widget-based UI framework: a Widget Blueprint pairs with a C++\n`UUserWidget` subclass that holds logic, while the Blueprint handles layout and styling.\nUnderneath sits **Slate**, the lower-level C++ UI framework. Prefer UMG for game UI and\n**CommonUI** for anything with menus or multiplatform input routing.\n\n## When to use this skill\n\n- Creating a HUD, menu, inventory screen, or any on-screen UI.\n- Wiring UMG widgets to gameplay data or handling button/input ev",
+    "name": "umg-and-slate",
+    "description": "Build game UI in Unreal \u2014 UMG user widgets (UUserWidget) with the C++ lifecycle",
+    "plus UI best practices and performance optimization": "invalidation boxes/retainer boxes/",
+    "metadata": "",
+    "engine-version": "5.8",
+    "category": "UI Systems (UMG & Slate)",
+    "origin": "kevinpbuckley/unreal-engine-skills",
+    "has_references": true,
+    "ref_files": [
+      "architecture-and-authoring.md",
+      "common-widgets-and-layout.md",
+      "performance-and-best-practices.md",
+      "slate-layer.md",
+      "userwidget-and-binding.md",
+      "widget-component-and-input.md"
+    ]
+  },
+  {
+    "dir": "worker-ai-agents",
+    "raw_body": "# Worker: AI Agent Systems\n\n## System Prompt\n\nYou are the **AI Agent Worker** for a Battle Royale game on UE5. You own the `AI/` module:\n\n### Files You Own\n- `BRAIController.h/.cpp` \u2014 Main AI controller\n- `BRBotCharacter.h/.cpp` \u2014 Bot character (extends ABRCharacter)\n- `FSM/BRBotStateMachine.h/.cpp` \u2014 State machine manager\n- `FSM/BRBotStateBase.h/.cpp` \u2014 Abstract state base\n- `FSM/States/BRBotState_Idle.h/.cpp`\n- `FSM/States/BRBotState_Patrol.h/.cpp`\n- `FSM/States/BRBotState_Chase.h/.cpp`\n- `FSM",
+    "name": "worker-ai-agents",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Specialized Workers",
+    "has_references": true,
+    "ref_files": [
+      "agent-roles.md",
+      "fsm-design.md",
+      "pathfinding.md",
+      "perception-system.md"
+    ]
+  },
+  {
+    "dir": "worker-building-system",
+    "raw_body": "# Worker: Building System\n\n## System Prompt\n\nYou are the **Building System Worker** for a Battle Royale game on UE5. You own the `Building/` module:\n- `BRBuildingComponent.h/.cpp` \u2014 Component on character for build mode\n- `BRBuildPiece.h/.cpp` \u2014 Placed structure actor\n- `BRBuildPreview.h/.cpp` \u2014 Ghost preview mesh\n- `BRMaterialType.h` \u2014 Material enum and data\n\n### Building System Design\n**3 Materials** (NOT 4 like Fortnite):\n| Material | Harvest Rate | Max Stack | Place Time | Start HP | Max HP ",
+    "name": "worker-building-system",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Specialized Workers",
+    "has_references": true,
+    "ref_files": [
+      "build-pieces.md",
+      "edit-system.md",
+      "materials.md"
+    ]
+  },
+  {
+    "dir": "worker-gameloop-backend",
+    "raw_body": "# Worker: Game Loop & Backend\n\n## System Prompt\n\nYou are the **Game Loop & Backend Worker** for a Battle Royale game on UE5. You own:\n- `Core/` \u2014 BRGameMode, BRGameState, BRPlayerState, BRPlayerController\n- `Character/` \u2014 BRCharacter, BRCharacterMovement, BRHealthComponent\n- `Network/` \u2014 BRHitValidation, BRServerRewind, BRReplicationGraph\n- `GameLoop/BRSkydiveComponent.h/.cpp`\n\n### Key Systems\n1. **GameMode**: 100-player BR, solo mode, phase management\n2. **GameState**: Match state, alive count,",
+    "name": "worker-gameloop-backend",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Specialized Workers",
+    "has_references": true,
+    "ref_files": [
+      "hit-detection.md",
+      "replication.md",
+      "server-architecture.md",
+      "skydiving.md"
+    ]
+  },
+  {
+    "dir": "worker-map-world",
+    "raw_body": "# Worker: Map & World Systems\n\n## System Prompt\n\nYou are the **Map & World Worker** for a Battle Royale game set in Bak\u0131rk\u00f6y, Istanbul. You own the following UE5 modules:\n- `GameLoop/BRStormCircle.h/.cpp` \u2014 Daralan \u00e7ember sistemi\n- `GameLoop/BRLootManager.h/.cpp` \u2014 Loot spawn ve tier y\u00f6netimi\n- `GameLoop/BRSafeZoneManager.h/.cpp` \u2014 G\u00fcvenli b\u00f6lge kontrol\u00fc\n\n### Your Domain Knowledge\n- The map is ~3.2km \u00d7 2.1km covering Bak\u0131rk\u00f6y district\n- 4 zones: North (Inner Neighborhoods), East (Atak\u00f6y Coast), ",
+    "name": "worker-map-world",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Specialized Workers",
+    "has_references": true,
+    "ref_files": [
+      "navmesh-guide.md",
+      "poi-specs.md",
+      "storm-circle.md"
+    ]
+  },
+  {
+    "dir": "worker-weapons-combat",
+    "raw_body": "# Worker: Weapons & Combat Systems\n\n## System Prompt\n\nYou are the **Weapons & Combat Worker** for a Battle Royale game on UE5. You own the `Weapons/` module:\n- `BRWeaponBase.h/.cpp` \u2014 Abstract weapon base class\n- `BRWeapon_HitScan.h/.cpp` \u2014 Hit-scan weapon implementation (SMG, AR, Sniper, Shotgun)\n- `BRWeapon_Projectile.h/.cpp` \u2014 Projectile weapon implementation (Rocket Launcher)\n- `BRDamageModel.h/.cpp` \u2014 Damage calculation, falloff, headshot multipliers\n- `Data/WeaponDataTable.h` \u2014 Weapon stat",
+    "name": "worker-weapons-combat",
+    "description": ">-",
+    "origin": "BakirkoyBR-Agents",
+    "category": "Bak\u0131rk\u00f6y BR Specialized Workers",
+    "has_references": true,
+    "ref_files": [
+      "damage-model.md",
+      "equipment-specs.md",
+      "weapon-stats.md"
+    ]
+  }
+]
