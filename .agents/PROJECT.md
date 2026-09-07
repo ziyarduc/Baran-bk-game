@@ -54,6 +54,10 @@ The Bakırköy BR project integrates Unreal Engine 5 with intelligent multi-agen
 | 19 | Automated Map & Environment Gen | UE5 Python level gen (`generate_map.py`), floor, exterior walls, 1 NavMeshBoundsVolume, loot spawners, 10 PlayerStarts, save .umap | M-UE5-1 | Survey Explorer P2-1 | DONE |
 | 20 | Automated Blueprint & UI Setup | UE5 Python setup (`setup_blueprints.py`) creating Blueprints for GameModes, Character, HUD, and scaffolding WBP_KillFeed | M-UE5-2 | Spec Miner Survey P2-2 | DONE |
 | 21 | Project Packaging Pipeline | Windows packaging pipeline (`package_game.ps1`) using RunUAT BuildCookRun, engine detection, static AST validation | M-UE5-3 | Survey Explorer P2-3 | DONE |
+| 22 | OSM Overpass Querying & Projection | Fetch OSM data for Bakırköy via Overpass API with failover, WGS84 to UE projection, height synthesis (`fetch_osm_data.py`) | M-OSM-1 | Survey Explorer 1 | IN_PROGRESS |
+| 23 | UE5 Procedural GIS Level Gen | UE5 Python level gen (`build_osm_level.py`) with solid OBB buildings, roads, floor, lighting, NavMeshBounds, PlayerStarts | M-OSM-2 | Survey Explorer 2 | PLANNED |
+| 24 | Character Mesh & Anim Pipeline | Assign SKM_Manny to BP_BRCharacter, generate faceless PBR materials, wire ABP_BRCharacter AnimBP (`setup_character_anims.py`) | M-CHAR-1 | Survey Explorer 3 | IN_PROGRESS |
+| 25 | Phase 4 Multi-Agent Verification | Multi-agent Review, Adversarial Challenge, and Forensic Integrity Audit Gate for Phase 4 deliverables | M-VERIFY | Survey Explorers 1-3 | PLANNED |
 
 ---
 
@@ -69,6 +73,10 @@ The Bakırköy BR project integrates Unreal Engine 5 with intelligent multi-agen
 | M-UE5-2 | Automated Blueprint & UI Setup (`setup_blueprints.py`) | Implement `setup_blueprints.py` creating BP_BRGameMode, BP_BRCharacter, BP_BRHUD, and scaffolding WBP_KillFeed | M1-M5 | DONE |
 | M-UE5-3 | Project Packaging Pipeline (`package_game.ps1`) | Implement `package_game.ps1` with RunUAT BuildCookRun, engine discovery, parameter handling, static AST verification | M1-M5 | DONE |
 | M-UE5-4 | Multi-Agent Review & Forensic Audit Gate | Reviewers, Challengers, and Forensic Auditor verification and integrity gate | M-UE5-1..3 | DONE |
+| M-OSM-1 | OSM Data Acquisition Pipeline (`fetch_osm_data.py`) | Implement `fetch_osm_data.py` with Overpass query, failover, projection, height synthesis, cache, seed | None | IN_PROGRESS |
+| M-OSM-2 | UE5 GIS Procedural Level Generator (`build_osm_level.py`) | Implement `build_osm_level.py` with OBB buildings, roads, floor, lighting, NavMeshBounds, PlayerStarts, dry-run | M-OSM-1 | PLANNED |
+| M-CHAR-1 | Procedural Character & Anim Setup (`setup_character_anims.py`) | Implement `setup_character_anims.py` with SKM_Manny, faceless materials, AnimBP, CDO wiring, dry-run | None | IN_PROGRESS |
+| M-VERIFY | Phase 4 Multi-Agent Gate & Audit | Reviewers, Challengers, and Forensic Auditor verification and integrity gate | M-OSM-1, M-OSM-2, M-CHAR-1 | PLANNED |
 
 ---
 
@@ -93,6 +101,9 @@ The Bakırköy BR project integrates Unreal Engine 5 with intelligent multi-agen
 ## Code Layout
 ```
 C:\Users\silver\Desktop\bakirkoy-br\
+├── fetch_osm_data.py               # Phase 4 R1: OSM Overpass data pipeline
+├── build_osm_level.py              # Phase 4 R1: UE5 procedural GIS city level generator
+├── setup_character_anims.py        # Phase 4 R2: Procedural placeholder character & AnimBP setup
 ├── generate_map.py                 # R1: Automated map & environment generation
 ├── setup_blueprints.py             # R2: Automated Blueprint & UI scaffolding
 ├── package_game.ps1                # R3: Windows packaging pipeline

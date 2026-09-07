@@ -1,0 +1,12 @@
+## Handoff: M-OSM-1-fetch-osm-data
+- **Verdict**: DONE
+- **Modified Files**:
+  - `C:\Users\silver\Desktop\bakirkoy-br\fetch_osm_data.py`
+  - `C:\Users\silver\Desktop\bakirkoy-br\data\bakirkoy_level_data.json`
+  - `C:\Users\silver\Desktop\bakirkoy-br\data\bakirkoy_osm_raw.json`
+- **Verification**:
+  - `python -m py_compile fetch_osm_data.py` (Exit code 0, syntax valid)
+  - `python fetch_osm_data.py --output data/bakirkoy_level_data.json` (Exit code 0, generated 2974 buildings, 440 roads)
+  - `python -c "import json; data = json.load(open('data/bakirkoy_level_data.json', 'r', encoding='utf-8')); assert 'metadata' in data, 'Missing metadata'; assert 'buildings' in data and len(data['buildings']) > 0, 'No buildings found'; assert 'roads' in data and len(data['roads']) > 0, 'No roads found'; b0 = data['buildings'][0]; assert 'height_cm' in b0 and 'footprint_ue' in b0, 'Invalid building format'; r0 = data['roads'][0]; assert 'width_cm' in r0 and 'points_ue' in r0, 'Invalid road format'; print('Verification PASSED:', len(data['buildings']), 'buildings,', len(data['roads']), 'roads loaded successfully.')"` (Exit code 0, output: "Verification PASSED: 2974 buildings, 440 roads loaded successfully.")
+  - `powershell -ExecutionPolicy Bypass -File scripts/checkpoint-manager.ps1 -Action Save -Milestone "M-OSM-1" -Task "fetch_osm_data" -Details "fetch_osm_data.py authored and verified"` (Exit code 0, checkpoint saved)
+- **Next Action**: Proceed to milestone M-OSM-2 to implement the procedural level generator `build_osm_level.py` consuming `data/bakirkoy_level_data.json`.

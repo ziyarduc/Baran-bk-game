@@ -1,7 +1,7 @@
-# BRIEFING — 2026-09-06T16:29:00Z
+# BRIEFING — 2026-09-06T18:46:00Z
 
 ## Mission
-Supervise the orchestration of Phase 2: UE5 Python API scripts for graybox map generation (`generate_map.py`), Blueprint and UI scaffolding (`setup_blueprints.py`), and project packaging pipeline (`package_game.ps1`) for Windows Release Candidate in Bakırköy BR Unreal Engine 5 project, with full rate-limit resilience, state checkpointing, and independent Victory Audit. (Execution requirements for UnrealEditor-Cmd / RunUAT waived; syntax/static analysis and rigorous code review enforced).
+Supervise the orchestration of Phase 4: 1:1 Bakirkoy Map Generation via OpenStreetMap (OSM) data (`fetch_osm_data.py`, `build_osm_level.py`) and procedural placeholder character models with animations (`setup_character_anims.py`) for Bakırköy BR Unreal Engine 5 project, with full rate-limit resilience, state checkpointing, and independent Victory Audit.
 
 ## 🔒 My Identity
 - Archetype: sentinel
@@ -11,6 +11,8 @@ Supervise the orchestration of Phase 2: UE5 Python API scripts for graybox map g
 - Orchestrator (Phase 2, Initial): 6db1ab02-cab9-4928-8d43-52d45450511c (Terminated on 429 quota exhaustion)
 - Orchestrator (Phase 2, Active): c5fd86f3-814e-4485-9615-49cef735c987 (Completed)
 - Victory Auditor (Phase 2): f50188bb-38c3-4a5f-9c83-b6da85ed9fc5 (Completed)
+- Orchestrator (Phase 4, Active): 15e550de-0068-443d-aa0c-ecaadddc5dd4 (Running)
+- Victory Auditor (Phase 4): TBD (to be spawned on victory claim)
 
 ## 🔒 Key Constraints
 - No technical decisions — relay only
@@ -24,7 +26,7 @@ Supervise the orchestration of Phase 2: UE5 Python API scripts for graybox map g
 - **Execution Waiver Directive**: UE5 is not installed; do NOT execute UnrealEditor-Cmd.exe or RunUAT.bat. Author, statically verify (py_compile, AST), and review scripts.
 
 ## User Context
-- **Last user request**: Author UE5 Python scripts (`generate_map.py`, `setup_blueprints.py`) and packaging pipeline (`package_game.ps1`). UE5 execution waived; verify via static analysis / syntax checking.
+- **Last user request**: Phase 4: 1:1 Bakirkoy Map Generation via OpenStreetMap (`fetch_osm_data.py`, `build_osm_level.py`) and procedural placeholder character models with animations (`setup_character_anims.py`). Static analysis / syntax checking required.
 - **Pending clarifications**: [none]
 - **Delivered results (Phase 2)**:
   1. `generate_map.py` (698 lines): procedural level generation with floor, perimeter walls, 1 NavMeshBoundsVolume, 13 loot spawners, 10 PlayerStarts in 75m perimeter circle.
@@ -32,18 +34,14 @@ Supervise the orchestration of Phase 2: UE5 Python API scripts for graybox map g
   3. `package_game.ps1` (368 lines): Packaging pipeline using RunUAT with multi-tier engine discovery and InvariantCulture safety.
 
 ## Project Status
-- **Phase**: complete (Phase 2 Victory Confirmed and Cleaned Up)
-- **Active Orchestrator**: none (cleaned up)
-- **Active Auditor**: none (cleaned up)
-- **Monitoring Crons**: none (cancelled)
+- **Phase**: in progress (Phase 4 Orchestrator dispatched)
+- **Active Orchestrator**: 15e550de-0068-443d-aa0c-ecaadddc5dd4
+- **Active Auditor**: none (pending victory claim)
+- **Monitoring Crons**: task-32 (Progress Reporting */8), task-34 (Liveness Check */10)
 
 ## Victory Audit Status
-- **Triggered**: yes
-- **Victory Auditor**: f50188bb-38c3-4a5f-9c83-b6da85ed9fc5
-- **Verdict**: VICTORY CONFIRMED
-  - Timeline Check: PASS (no anomalies)
-  - Integrity Check: PASS (zero stubs, zero facades, benchmark mode clean)
-  - Independent Test Execution: PASS (100% across Python compilation, Python AST inspection, Map Invariant audit, C++ reflection ground truth, PowerShell AST parsing, and rule verification)
+- **Triggered**: no
+- **Verdict**: pending
 - **Retry count**: 0
 
 ## Artifact Index

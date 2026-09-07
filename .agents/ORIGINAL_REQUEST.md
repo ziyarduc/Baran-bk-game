@@ -136,3 +136,35 @@ DO NOT try to execute `UnrealEditor-Cmd.exe` or `RunUAT.bat`.
 Instead, your task is to successfully author and review the 3 required scripts (`generate_map.py`, `setup_blueprints.py`, and `package_game.ps1`) based purely on Unreal Engine 5 Python API documentation and best practices. Verify them using static analysis, syntax checking (e.g., `python -m py_compile`), and rigorous code review among your agents. 
 
 Once the scripts are fully written and placed in the working directory, you may conclude your teamwork execution successfully.
+
+## 2026-09-06T18:45:06Z
+
+# Teamwork Project Prompt — Final Draft
+
+> Status: Launched
+> Goal: Craft prompt → get user approval → delegate to teamwork_preview
+> Requested team: Full multi-agent team
+
+Bakirkoy BR Project Phase 4: The objective is to generate a 1:1 scale replica of Bakirkoy using OpenStreetMap (OSM) data and to set up procedural placeholder character models with animations.
+
+Working directory: C:\Users\silver\Desktop\bakirkoy-br\
+Integrity mode: benchmark
+
+## Requirements
+
+### R1. 1:1 Bakirkoy Map Generation via OpenStreetMap
+Write a Python automation pipeline (e.g., using `osmnx` or `requests` to fetch Overpass API data) that downloads the topological data (buildings and streets) for Bakirkoy, Istanbul. Create a UE5 Python script that reads this data to procedurally generate the 1:1 city level in Unreal Engine. Streets should be laid out, and buildings should be extruded as solid exterior blocks matching real-world footprints.
+
+### R2. Procedural Placeholder Characters & Animations
+Set up a procedural animation pipeline using UE5's default Skeletal Meshes (Manny/Quinn) or Control Rig. The characters should have placeholder, faceless materials (gray or solid colors). Write the necessary scripts or Blueprints to integrate these models and basic locomotion animations (run, jump, idle, aim) into the existing `ABRCharacter` class.
+
+## Acceptance Criteria
+
+### Map Verification
+- [ ] A Python script (`fetch_osm_data.py`) exists and successfully queries the OpenStreetMap/Overpass API without syntax errors.
+- [ ] A UE5 Python script (`build_osm_level.py`) exists that translates the fetched GIS data into UE5 actors/splines without runtime errors.
+
+### Animation Verification
+- [ ] A script or detailed blueprint setup (`setup_character_anims.py`) exists that assigns a faceless material and a basic Animation Blueprint (AnimBP) to `BP_BRCharacter`.
+- [ ] Static analysis (e.g., `python -m py_compile`) confirms all Python files are syntactically valid.
+
